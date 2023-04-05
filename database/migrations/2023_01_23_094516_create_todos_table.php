@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('todos');
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
             $table->string('content');
             $table->integer('position')->nullable();
-            $table->foreignId('user_id')->constrained('user');
-            $table->enum('status', ['pending','done'])->default('pendng');
-            $table->timestamp();
+            $table->foreignId('user_id')->constrained('users');
+            $table->enum('status', ['pending','done'])->default('pending');
+            $table->timestamp('created_at');
         });
     }
 
