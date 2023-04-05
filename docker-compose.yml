@@ -1,0 +1,39 @@
+version: '3'
+services:
+
+  #Backend Service
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hr-backend-laravel
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www/hr-backend-laravel
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www/hr-backend-laravel
+    networks:
+      - local-network
+
+  #MySQL Service
+  mysql:
+    image: mysql:8
+    container_name: hr-backend-laravel-mysql
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: hr-backend-laravel
+      MYSQL_ROOT_PASSWORD: root
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - local-network
+
+#Docker Networks
+networks:
+  local-network:
+    driver: bridge
