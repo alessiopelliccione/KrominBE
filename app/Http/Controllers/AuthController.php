@@ -51,14 +51,16 @@ class AuthController extends Controller
         $user = User::find(Auth::id());
 
         try {
-            $tokens = AuthUtils::createTokens($request->email, $request->password);
+            //$tokens = AuthUtils::createTokens($request->email, $request->password);
+            $token = $user->createToken('Laravel Password Grant Client')->accessToken;
         } catch (\Exception $e) {
             return response()->json(['message' => "Login server error", 'error' => $e->getMessage()], 500);
         }
 
         return response()->json([
-            'token_type' => $tokens['token_type'],
-            'access_token' => $tokens['access_token'],
+            //'token_type' => $tokens['token_type'],
+            //'access_token' => $tokens['access_token'],
+            'access_token' => $token,
             'user' => $user
         ]);
     }

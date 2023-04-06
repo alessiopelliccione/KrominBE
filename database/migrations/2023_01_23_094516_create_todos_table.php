@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('position')->nullable();
             $table->foreignId('user_id')->constrained('users');
             $table->enum('status', ['pending','done'])->default('pending');
-            $table->timestamp('created_at');
+            $table->timestamp('created_at')->nullable();
         });
     }
 
