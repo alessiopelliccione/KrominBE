@@ -21,6 +21,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->enum('status', ['pending','done'])->default('pending');
             $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
+            $table->integer('list')->nullable();
         });
     }
 

@@ -18,7 +18,8 @@ class TodoController extends Controller
             'status' => ['sometimes', 'in:'.implode(',',Todo::STATUSES)],
             'from' => ['sometimes', 'date'],
             'to' => ['sometimes', 'date'],
-            'with_deleted' => ['sometimes']
+            'with_deleted' => ['sometimes'],
+            'list' => ['sometimes']
         ]);
 
         if ($validator->fails()) {
@@ -26,7 +27,7 @@ class TodoController extends Controller
         }
 
         $user = $request->user();
-        $data = $request->only('content', 'status', 'from', 'to');
+        $data = $request->only('content', 'status', 'from', 'to', 'list');
         $todos = Todo::query()->where('user_id', $user->id);
 
         if (isset($data['content'])) {
@@ -45,6 +46,11 @@ class TodoController extends Controller
         }
         if($request->with_deleted){
             $todos = $todos->withTrashed();
+        }
+
+        //Se la lista non viene settata la ricerca viene fatta per tutti i todo (in base agli altri filtri)
+        if(isset($data['list'])) {
+            $todos = $todos->where('list', $data['list']);
         }
 
         $todos = $todos->get();
@@ -67,7 +73,8 @@ class TodoController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'content' => ['required', 'string'],
-            'position' => ['required', 'numeric']
+            'position' => ['required', 'numeric'],
+            "list" => ['required', 'numeric']
         ]);
 
         if ($validator->fails()) {
@@ -77,6 +84,8 @@ class TodoController extends Controller
         $user = $request->user();
         $todo = Todo::query()->create([
             'content' => $request->input('content'),
+            'position' => $request->input('position'),
+            'list' => $request->input('list'),
             'user_id' => $user->id,
         ]);
 
@@ -87,7 +96,8 @@ class TodoController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'content' => ['sometimes', 'string'],
-            'position' => ['sometimes', 'numeric']
+            'position' => ['sometimes', 'numeric'],
+            'list' => ['sometimes', 'numeric']
         ]);
 
         if ($validator->fails()) {
@@ -99,7 +109,7 @@ class TodoController extends Controller
             return response()->json(['message' => 'Operation not permitted'], 401);
         }
 
-        $data = $request->only('content', 'position');
+        $data = $request->only('content', 'position', 'list');
         $todo->update($data);
 
         return response()->json($todo->refresh());

@@ -10,7 +10,7 @@ class Todo extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['user_id', 'content', 'status'];
+    protected $fillable = ['user_id', 'content', 'status', 'position', 'list'];
 
     const PENDING = 'pending';
     const DONE = 'done';
