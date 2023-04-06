@@ -74,14 +74,24 @@ class TodoController extends Controller
         $validator = Validator::make($request->all(), [
             'content' => ['required', 'string'],
             'position' => ['required', 'numeric'],
-            "list" => ['required', 'numeric']
+            "list" => ['required', 'exists:listas,id', 'numeric']
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
 
+        /**
+         * @todo check owner della lista 
+         * */
+
         $user = $request->user();
+
+        $lista = DB::table('listas')->join('users', 'users.id', '=', 'listas.user_id')->where('user_id', $user->id)->get();
+        if($lista->first()===null) {
+            return response()->json('Forbidden', 403);
+        }
+
         $todo = Todo::query()->create([
             'content' => $request->input('content'),
             'position' => $request->input('position'),
