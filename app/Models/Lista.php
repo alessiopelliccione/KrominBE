@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Lista extends Model
 {
     use HasFactory;
-    protected $fillable = ['tipologia', 'list_name', 'user_id', 'shortcode'];
+    protected $fillable = ['user_id', 'tipologia', 'list_name', 'shortcode'];
 
     const PUBBLICA = 'pubblica';
     const PRIVATA = 'privata';

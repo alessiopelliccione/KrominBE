@@ -46,6 +46,7 @@ Route::middleware(['auth:api'])->group(function() {
             Route::get('/share', [ListaController::class, 'share']);
             Route::patch('/updateKey', [ListaController::class, 'updateKey']);
             Route::patch('/updateTipologia', [ListaController::class, 'updateTipologia']);
+            Route::delete('/', [ListaController::class, 'delete']);
         });
     });
 });

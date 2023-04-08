@@ -109,6 +109,31 @@ class ListaController extends Controller
         return response()->json($lista->refresh());
     }
 
+    public function delete(Request $request, Lista $lista): JsonResponse
+    {
+
+        $user = $request->user();
+
+        if($lista->user_id !== $user->id && $lista->tipologia === LISTA::PRIVATA) {
+            return response()->json(['message' => 'Operation not permitted'], 401);
+        }
+
+        if($lista->tipologia === LISTA::PUBBLICA && $lista->user_id !== $user->id) {
+            $validator = Validator::make($request->all(), [
+                "shortcode" => ['required', 'string']
+            ]);
+            if ($validator->fails()) {
+                return response()->json($validator->errors(), 400);
+            }
+            if ($lista->shortcode !== $request->shortcode) {
+                return response()->json(['message' => 'Operation not permitted'], 401);
+            }
+        }
+
+        $lista->delete();
+        return response()->json(null, 204);
+    }
+
     private function generateShortcode() : String {
         $shortcode = Str::random(8);
         return $shortcode;
