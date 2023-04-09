@@ -30,6 +30,7 @@ Route::middleware(['auth:api'])->group(function () {
         Route::get('/', [TodoController::class, 'index']);
         Route::post('/', [TodoController::class, 'create']);
         Route::post('/order', [TodoController::class, 'order']);
+        Route::get('/generate-report', [TodoController::class, 'report']);
         Route::prefix('{todo}')->group(function () {
             Route::get('/', [TodoController::class, 'show']);
             Route::patch('/', [TodoController::class, 'update']);
@@ -50,4 +51,3 @@ Route::middleware(['auth:api'])->group(function() {
         });
     });
 });
-

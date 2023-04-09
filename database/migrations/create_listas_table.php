@@ -18,7 +18,7 @@ return new class extends Migration
         Schema::create('listas', function (Blueprint $table) {
             $table->id()->unique();
             $table->string('shortcode')->unique()->nullable();
-            $table->string('tipologia', ['pubblica','privata'])->default('privata');
+            $table->enum('tipologia', ['pubblica','privata'])->default('privata');
             $table->foreignId('user_id')->constrained('users');
             $table->string('list_name')->nullable();
             $table->timestamp('created_at')->nullable();

@@ -179,4 +179,42 @@ class TodoController extends Controller
 
         return response()->json('Positions updated');
     }
+
+    public function report(Request $request) : JsonResponse {
+
+        $validator = Validator::make($request->all(), [
+            'start_date' => ['sometimes', 'date'],
+            'end_date' => ['sometimes', 'date'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        $user = $request->user();
+        $data = $request->only('start_date', 'end_date');
+
+        if (isset($data['start_date']) && isset($data['end_date'])) {
+
+            $todos_number = Todo::query()->where('user_id', $user->id)->count();
+            $five_days_todos = Todo::query()->where('user_id', $user->id)
+                ->whereNotNull('start_date')
+                ->whereNotNull('end_date')
+                ->where('start_date', '>', $data['start_date'])
+                ->where('end_date', '<', $data['end_date'])
+                ->whereRaw('DATEDIFF(end_date,start_date) < 5')
+                ->count();
+        } else {
+            $todos_number = Todo::query()->where('user_id', $user->id)->count();
+            $five_days_todos = Todo::query()->where('user_id', $user->id)
+                ->whereNotNull('start_date')
+                ->whereNotNull('end_date')
+                ->whereRaw('DATEDIFF(end_date,start_date) < 10')
+                ->count();
+        }
+        
+        $percentage = $five_days_todos*100/$todos_number;
+
+        return response()->json($percentage, 200);
+    }
 }
