@@ -1,0 +1,584 @@
+{
+	"info": {
+		"_postman_id": "97fc025c-fd06-4470-8cbd-28040fd550c6",
+		"name": "Kromin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18898296"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.environment.set(\"token\", jsonData.access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"jonathan.doe@example.net\",\n    \"password\": \"Password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/auth/login",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/auth/logout",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"jonathan.doe@example.net\",\n    \"password\": \"Password\",\n    \"password_confirmation\":\"Password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/auth/signup",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show Todos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxOCIsImp0aSI6IjgzMDljYTA3NDQ5ZmViM2I0NmE2NThlYzA3NGE2M2MyMDgzNDFkYTBiNWU4Mjc5ZDNiZjBiZGIxMDJkNDRlMzJjNTgyNDYxOTcwOTMwYzg3IiwiaWF0IjoxNjgwNzcyNDU1LjIyOTU5NywibmJmIjoxNjgwNzcyNDU1LjIyOTYsImV4cCI6MTcxMjM5NDg1NS4xOTc3NjYsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.t9TSZubrsm98SouVlKvkgRyblYyVqngYQxhBAg7pX7iVEiW9GEzkmI-BvaTot1v4N4_PF8HUHOBG-A3pYgwdwKCkLts5yT3SUWJu4VcZFPj34HvWyMHSsKIkq3Z9seqHoUlDEM0Suz9eNid8eINF-m2WxjHEfPp7yMNWbHcs0cLFplP1octPHnLN9J5AaCqzRDnomwgVXY-X0piHnyjek8AI40BAWP_98M8oiO0n0zcDgA-9Rm2-V0KGJGWYuZKm2J6hqItbSsxqb7GkAFfDjh1Ul6oa8PDVQRYDDDD3bAnC-xln9D2LWghd2wytDI2nAnaqqAFIQ3JRN3-iJ-3NbSTuds2dZokT8Xsr5tUHwHBZvF104yU_n4SZ0X9NDc1M0Xb808KG8_5xqJE3FcQMSgmo0Dw0l7RwJ4SjLGks4WE0Nn74hy7ueam9CBy3e3cEJdIJ66JydkVxzz7IPykJZR01o7LHECheG4moDsN9WAAnx5Ph5Wzt3lUgTYEMUDExgzXsHs6bs7FPLJIadLhI2qj_Oy-SigFHubenc-c51yRzRvcxIVGfXfcF6AE7ZNcQ5PPm8hDqNdopGdjA7xMbgFBZA2t7B83ZU86-BpQKUc11oOLhjvOIdThI2ENHOYDxJ-m8JyhIBTOjaBYp6j8JhUyLfUfyZ8ePYoBmL_CM8ig",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost/api/todos",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generate Report",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxOCIsImp0aSI6IjgzMDljYTA3NDQ5ZmViM2I0NmE2NThlYzA3NGE2M2MyMDgzNDFkYTBiNWU4Mjc5ZDNiZjBiZGIxMDJkNDRlMzJjNTgyNDYxOTcwOTMwYzg3IiwiaWF0IjoxNjgwNzcyNDU1LjIyOTU5NywibmJmIjoxNjgwNzcyNDU1LjIyOTYsImV4cCI6MTcxMjM5NDg1NS4xOTc3NjYsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.t9TSZubrsm98SouVlKvkgRyblYyVqngYQxhBAg7pX7iVEiW9GEzkmI-BvaTot1v4N4_PF8HUHOBG-A3pYgwdwKCkLts5yT3SUWJu4VcZFPj34HvWyMHSsKIkq3Z9seqHoUlDEM0Suz9eNid8eINF-m2WxjHEfPp7yMNWbHcs0cLFplP1octPHnLN9J5AaCqzRDnomwgVXY-X0piHnyjek8AI40BAWP_98M8oiO0n0zcDgA-9Rm2-V0KGJGWYuZKm2J6hqItbSsxqb7GkAFfDjh1Ul6oa8PDVQRYDDDD3bAnC-xln9D2LWghd2wytDI2nAnaqqAFIQ3JRN3-iJ-3NbSTuds2dZokT8Xsr5tUHwHBZvF104yU_n4SZ0X9NDc1M0Xb808KG8_5xqJE3FcQMSgmo0Dw0l7RwJ4SjLGks4WE0Nn74hy7ueam9CBy3e3cEJdIJ66JydkVxzz7IPykJZR01o7LHECheG4moDsN9WAAnx5Ph5Wzt3lUgTYEMUDExgzXsHs6bs7FPLJIadLhI2qj_Oy-SigFHubenc-c51yRzRvcxIVGfXfcF6AE7ZNcQ5PPm8hDqNdopGdjA7xMbgFBZA2t7B83ZU86-BpQKUc11oOLhjvOIdThI2ENHOYDxJ-m8JyhIBTOjaBYp6j8JhUyLfUfyZ8ePYoBmL_CM8ig",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost/api/todos/generate-report",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"todos",
+						"generate-report"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show Todo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxOCIsImp0aSI6IjgzMDljYTA3NDQ5ZmViM2I0NmE2NThlYzA3NGE2M2MyMDgzNDFkYTBiNWU4Mjc5ZDNiZjBiZGIxMDJkNDRlMzJjNTgyNDYxOTcwOTMwYzg3IiwiaWF0IjoxNjgwNzcyNDU1LjIyOTU5NywibmJmIjoxNjgwNzcyNDU1LjIyOTYsImV4cCI6MTcxMjM5NDg1NS4xOTc3NjYsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.t9TSZubrsm98SouVlKvkgRyblYyVqngYQxhBAg7pX7iVEiW9GEzkmI-BvaTot1v4N4_PF8HUHOBG-A3pYgwdwKCkLts5yT3SUWJu4VcZFPj34HvWyMHSsKIkq3Z9seqHoUlDEM0Suz9eNid8eINF-m2WxjHEfPp7yMNWbHcs0cLFplP1octPHnLN9J5AaCqzRDnomwgVXY-X0piHnyjek8AI40BAWP_98M8oiO0n0zcDgA-9Rm2-V0KGJGWYuZKm2J6hqItbSsxqb7GkAFfDjh1Ul6oa8PDVQRYDDDD3bAnC-xln9D2LWghd2wytDI2nAnaqqAFIQ3JRN3-iJ-3NbSTuds2dZokT8Xsr5tUHwHBZvF104yU_n4SZ0X9NDc1M0Xb808KG8_5xqJE3FcQMSgmo0Dw0l7RwJ4SjLGks4WE0Nn74hy7ueam9CBy3e3cEJdIJ66JydkVxzz7IPykJZR01o7LHECheG4moDsN9WAAnx5Ph5Wzt3lUgTYEMUDExgzXsHs6bs7FPLJIadLhI2qj_Oy-SigFHubenc-c51yRzRvcxIVGfXfcF6AE7ZNcQ5PPm8hDqNdopGdjA7xMbgFBZA2t7B83ZU86-BpQKUc11oOLhjvOIdThI2ENHOYDxJ-m8JyhIBTOjaBYp6j8JhUyLfUfyZ8ePYoBmL_CM8ig",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost/api/todos",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show Lists",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxOCIsImp0aSI6IjgzMDljYTA3NDQ5ZmViM2I0NmE2NThlYzA3NGE2M2MyMDgzNDFkYTBiNWU4Mjc5ZDNiZjBiZGIxMDJkNDRlMzJjNTgyNDYxOTcwOTMwYzg3IiwiaWF0IjoxNjgwNzcyNDU1LjIyOTU5NywibmJmIjoxNjgwNzcyNDU1LjIyOTYsImV4cCI6MTcxMjM5NDg1NS4xOTc3NjYsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.t9TSZubrsm98SouVlKvkgRyblYyVqngYQxhBAg7pX7iVEiW9GEzkmI-BvaTot1v4N4_PF8HUHOBG-A3pYgwdwKCkLts5yT3SUWJu4VcZFPj34HvWyMHSsKIkq3Z9seqHoUlDEM0Suz9eNid8eINF-m2WxjHEfPp7yMNWbHcs0cLFplP1octPHnLN9J5AaCqzRDnomwgVXY-X0piHnyjek8AI40BAWP_98M8oiO0n0zcDgA-9Rm2-V0KGJGWYuZKm2J6hqItbSsxqb7GkAFfDjh1Ul6oa8PDVQRYDDDD3bAnC-xln9D2LWghd2wytDI2nAnaqqAFIQ3JRN3-iJ-3NbSTuds2dZokT8Xsr5tUHwHBZvF104yU_n4SZ0X9NDc1M0Xb808KG8_5xqJE3FcQMSgmo0Dw0l7RwJ4SjLGks4WE0Nn74hy7ueam9CBy3e3cEJdIJ66JydkVxzz7IPykJZR01o7LHECheG4moDsN9WAAnx5Ph5Wzt3lUgTYEMUDExgzXsHs6bs7FPLJIadLhI2qj_Oy-SigFHubenc-c51yRzRvcxIVGfXfcF6AE7ZNcQ5PPm8hDqNdopGdjA7xMbgFBZA2t7B83ZU86-BpQKUc11oOLhjvOIdThI2ENHOYDxJ-m8JyhIBTOjaBYp6j8JhUyLfUfyZ8ePYoBmL_CM8ig",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost/api/lists",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"lists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Share List",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxOCIsImp0aSI6IjgzMDljYTA3NDQ5ZmViM2I0NmE2NThlYzA3NGE2M2MyMDgzNDFkYTBiNWU4Mjc5ZDNiZjBiZGIxMDJkNDRlMzJjNTgyNDYxOTcwOTMwYzg3IiwiaWF0IjoxNjgwNzcyNDU1LjIyOTU5NywibmJmIjoxNjgwNzcyNDU1LjIyOTYsImV4cCI6MTcxMjM5NDg1NS4xOTc3NjYsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.t9TSZubrsm98SouVlKvkgRyblYyVqngYQxhBAg7pX7iVEiW9GEzkmI-BvaTot1v4N4_PF8HUHOBG-A3pYgwdwKCkLts5yT3SUWJu4VcZFPj34HvWyMHSsKIkq3Z9seqHoUlDEM0Suz9eNid8eINF-m2WxjHEfPp7yMNWbHcs0cLFplP1octPHnLN9J5AaCqzRDnomwgVXY-X0piHnyjek8AI40BAWP_98M8oiO0n0zcDgA-9Rm2-V0KGJGWYuZKm2J6hqItbSsxqb7GkAFfDjh1Ul6oa8PDVQRYDDDD3bAnC-xln9D2LWghd2wytDI2nAnaqqAFIQ3JRN3-iJ-3NbSTuds2dZokT8Xsr5tUHwHBZvF104yU_n4SZ0X9NDc1M0Xb808KG8_5xqJE3FcQMSgmo0Dw0l7RwJ4SjLGks4WE0Nn74hy7ueam9CBy3e3cEJdIJ66JydkVxzz7IPykJZR01o7LHECheG4moDsN9WAAnx5Ph5Wzt3lUgTYEMUDExgzXsHs6bs7FPLJIadLhI2qj_Oy-SigFHubenc-c51yRzRvcxIVGfXfcF6AE7ZNcQ5PPm8hDqNdopGdjA7xMbgFBZA2t7B83ZU86-BpQKUc11oOLhjvOIdThI2ENHOYDxJ-m8JyhIBTOjaBYp6j8JhUyLfUfyZ8ePYoBmL_CM8ig",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost/api/lists/8/share",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"lists",
+						"8",
+						"share"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Todo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxOCIsImp0aSI6IjgzMDljYTA3NDQ5ZmViM2I0NmE2NThlYzA3NGE2M2MyMDgzNDFkYTBiNWU4Mjc5ZDNiZjBiZGIxMDJkNDRlMzJjNTgyNDYxOTcwOTMwYzg3IiwiaWF0IjoxNjgwNzcyNDU1LjIyOTU5NywibmJmIjoxNjgwNzcyNDU1LjIyOTYsImV4cCI6MTcxMjM5NDg1NS4xOTc3NjYsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.t9TSZubrsm98SouVlKvkgRyblYyVqngYQxhBAg7pX7iVEiW9GEzkmI-BvaTot1v4N4_PF8HUHOBG-A3pYgwdwKCkLts5yT3SUWJu4VcZFPj34HvWyMHSsKIkq3Z9seqHoUlDEM0Suz9eNid8eINF-m2WxjHEfPp7yMNWbHcs0cLFplP1octPHnLN9J5AaCqzRDnomwgVXY-X0piHnyjek8AI40BAWP_98M8oiO0n0zcDgA-9Rm2-V0KGJGWYuZKm2J6hqItbSsxqb7GkAFfDjh1Ul6oa8PDVQRYDDDD3bAnC-xln9D2LWghd2wytDI2nAnaqqAFIQ3JRN3-iJ-3NbSTuds2dZokT8Xsr5tUHwHBZvF104yU_n4SZ0X9NDc1M0Xb808KG8_5xqJE3FcQMSgmo0Dw0l7RwJ4SjLGks4WE0Nn74hy7ueam9CBy3e3cEJdIJ66JydkVxzz7IPykJZR01o7LHECheG4moDsN9WAAnx5Ph5Wzt3lUgTYEMUDExgzXsHs6bs7FPLJIadLhI2qj_Oy-SigFHubenc-c51yRzRvcxIVGfXfcF6AE7ZNcQ5PPm8hDqNdopGdjA7xMbgFBZA2t7B83ZU86-BpQKUc11oOLhjvOIdThI2ENHOYDxJ-m8JyhIBTOjaBYp6j8JhUyLfUfyZ8ePYoBmL_CM8ig",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/todos?content=TODO1&position=1",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"todos"
+					],
+					"query": [
+						{
+							"key": "content",
+							"value": "TODO1"
+						},
+						{
+							"key": "position",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create List",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxOCIsImp0aSI6IjgzMDljYTA3NDQ5ZmViM2I0NmE2NThlYzA3NGE2M2MyMDgzNDFkYTBiNWU4Mjc5ZDNiZjBiZGIxMDJkNDRlMzJjNTgyNDYxOTcwOTMwYzg3IiwiaWF0IjoxNjgwNzcyNDU1LjIyOTU5NywibmJmIjoxNjgwNzcyNDU1LjIyOTYsImV4cCI6MTcxMjM5NDg1NS4xOTc3NjYsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.t9TSZubrsm98SouVlKvkgRyblYyVqngYQxhBAg7pX7iVEiW9GEzkmI-BvaTot1v4N4_PF8HUHOBG-A3pYgwdwKCkLts5yT3SUWJu4VcZFPj34HvWyMHSsKIkq3Z9seqHoUlDEM0Suz9eNid8eINF-m2WxjHEfPp7yMNWbHcs0cLFplP1octPHnLN9J5AaCqzRDnomwgVXY-X0piHnyjek8AI40BAWP_98M8oiO0n0zcDgA-9Rm2-V0KGJGWYuZKm2J6hqItbSsxqb7GkAFfDjh1Ul6oa8PDVQRYDDDD3bAnC-xln9D2LWghd2wytDI2nAnaqqAFIQ3JRN3-iJ-3NbSTuds2dZokT8Xsr5tUHwHBZvF104yU_n4SZ0X9NDc1M0Xb808KG8_5xqJE3FcQMSgmo0Dw0l7RwJ4SjLGks4WE0Nn74hy7ueam9CBy3e3cEJdIJ66JydkVxzz7IPykJZR01o7LHECheG4moDsN9WAAnx5Ph5Wzt3lUgTYEMUDExgzXsHs6bs7FPLJIadLhI2qj_Oy-SigFHubenc-c51yRzRvcxIVGfXfcF6AE7ZNcQ5PPm8hDqNdopGdjA7xMbgFBZA2t7B83ZU86-BpQKUc11oOLhjvOIdThI2ENHOYDxJ-m8JyhIBTOjaBYp6j8JhUyLfUfyZ8ePYoBmL_CM8ig",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/todos?content=TODO1&position=1",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"todos"
+					],
+					"query": [
+						{
+							"key": "content",
+							"value": "TODO1"
+						},
+						{
+							"key": "position",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete List",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxOCIsImp0aSI6IjgzMDljYTA3NDQ5ZmViM2I0NmE2NThlYzA3NGE2M2MyMDgzNDFkYTBiNWU4Mjc5ZDNiZjBiZGIxMDJkNDRlMzJjNTgyNDYxOTcwOTMwYzg3IiwiaWF0IjoxNjgwNzcyNDU1LjIyOTU5NywibmJmIjoxNjgwNzcyNDU1LjIyOTYsImV4cCI6MTcxMjM5NDg1NS4xOTc3NjYsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.t9TSZubrsm98SouVlKvkgRyblYyVqngYQxhBAg7pX7iVEiW9GEzkmI-BvaTot1v4N4_PF8HUHOBG-A3pYgwdwKCkLts5yT3SUWJu4VcZFPj34HvWyMHSsKIkq3Z9seqHoUlDEM0Suz9eNid8eINF-m2WxjHEfPp7yMNWbHcs0cLFplP1octPHnLN9J5AaCqzRDnomwgVXY-X0piHnyjek8AI40BAWP_98M8oiO0n0zcDgA-9Rm2-V0KGJGWYuZKm2J6hqItbSsxqb7GkAFfDjh1Ul6oa8PDVQRYDDDD3bAnC-xln9D2LWghd2wytDI2nAnaqqAFIQ3JRN3-iJ-3NbSTuds2dZokT8Xsr5tUHwHBZvF104yU_n4SZ0X9NDc1M0Xb808KG8_5xqJE3FcQMSgmo0Dw0l7RwJ4SjLGks4WE0Nn74hy7ueam9CBy3e3cEJdIJ66JydkVxzz7IPykJZR01o7LHECheG4moDsN9WAAnx5Ph5Wzt3lUgTYEMUDExgzXsHs6bs7FPLJIadLhI2qj_Oy-SigFHubenc-c51yRzRvcxIVGfXfcF6AE7ZNcQ5PPm8hDqNdopGdjA7xMbgFBZA2t7B83ZU86-BpQKUc11oOLhjvOIdThI2ENHOYDxJ-m8JyhIBTOjaBYp6j8JhUyLfUfyZ8ePYoBmL_CM8ig",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/lists/3",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"lists",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Todo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxOCIsImp0aSI6IjgzMDljYTA3NDQ5ZmViM2I0NmE2NThlYzA3NGE2M2MyMDgzNDFkYTBiNWU4Mjc5ZDNiZjBiZGIxMDJkNDRlMzJjNTgyNDYxOTcwOTMwYzg3IiwiaWF0IjoxNjgwNzcyNDU1LjIyOTU5NywibmJmIjoxNjgwNzcyNDU1LjIyOTYsImV4cCI6MTcxMjM5NDg1NS4xOTc3NjYsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.t9TSZubrsm98SouVlKvkgRyblYyVqngYQxhBAg7pX7iVEiW9GEzkmI-BvaTot1v4N4_PF8HUHOBG-A3pYgwdwKCkLts5yT3SUWJu4VcZFPj34HvWyMHSsKIkq3Z9seqHoUlDEM0Suz9eNid8eINF-m2WxjHEfPp7yMNWbHcs0cLFplP1octPHnLN9J5AaCqzRDnomwgVXY-X0piHnyjek8AI40BAWP_98M8oiO0n0zcDgA-9Rm2-V0KGJGWYuZKm2J6hqItbSsxqb7GkAFfDjh1Ul6oa8PDVQRYDDDD3bAnC-xln9D2LWghd2wytDI2nAnaqqAFIQ3JRN3-iJ-3NbSTuds2dZokT8Xsr5tUHwHBZvF104yU_n4SZ0X9NDc1M0Xb808KG8_5xqJE3FcQMSgmo0Dw0l7RwJ4SjLGks4WE0Nn74hy7ueam9CBy3e3cEJdIJ66JydkVxzz7IPykJZR01o7LHECheG4moDsN9WAAnx5Ph5Wzt3lUgTYEMUDExgzXsHs6bs7FPLJIadLhI2qj_Oy-SigFHubenc-c51yRzRvcxIVGfXfcF6AE7ZNcQ5PPm8hDqNdopGdjA7xMbgFBZA2t7B83ZU86-BpQKUc11oOLhjvOIdThI2ENHOYDxJ-m8JyhIBTOjaBYp6j8JhUyLfUfyZ8ePYoBmL_CM8ig",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\": \"TODO AGGIORNATO\",\n    \"position\": 8,\n    \"list\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/todos/2",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"todos",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Key",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxOCIsImp0aSI6IjgzMDljYTA3NDQ5ZmViM2I0NmE2NThlYzA3NGE2M2MyMDgzNDFkYTBiNWU4Mjc5ZDNiZjBiZGIxMDJkNDRlMzJjNTgyNDYxOTcwOTMwYzg3IiwiaWF0IjoxNjgwNzcyNDU1LjIyOTU5NywibmJmIjoxNjgwNzcyNDU1LjIyOTYsImV4cCI6MTcxMjM5NDg1NS4xOTc3NjYsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.t9TSZubrsm98SouVlKvkgRyblYyVqngYQxhBAg7pX7iVEiW9GEzkmI-BvaTot1v4N4_PF8HUHOBG-A3pYgwdwKCkLts5yT3SUWJu4VcZFPj34HvWyMHSsKIkq3Z9seqHoUlDEM0Suz9eNid8eINF-m2WxjHEfPp7yMNWbHcs0cLFplP1octPHnLN9J5AaCqzRDnomwgVXY-X0piHnyjek8AI40BAWP_98M8oiO0n0zcDgA-9Rm2-V0KGJGWYuZKm2J6hqItbSsxqb7GkAFfDjh1Ul6oa8PDVQRYDDDD3bAnC-xln9D2LWghd2wytDI2nAnaqqAFIQ3JRN3-iJ-3NbSTuds2dZokT8Xsr5tUHwHBZvF104yU_n4SZ0X9NDc1M0Xb808KG8_5xqJE3FcQMSgmo0Dw0l7RwJ4SjLGks4WE0Nn74hy7ueam9CBy3e3cEJdIJ66JydkVxzz7IPykJZR01o7LHECheG4moDsN9WAAnx5Ph5Wzt3lUgTYEMUDExgzXsHs6bs7FPLJIadLhI2qj_Oy-SigFHubenc-c51yRzRvcxIVGfXfcF6AE7ZNcQ5PPm8hDqNdopGdjA7xMbgFBZA2t7B83ZU86-BpQKUc11oOLhjvOIdThI2ENHOYDxJ-m8JyhIBTOjaBYp6j8JhUyLfUfyZ8ePYoBmL_CM8ig",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\": \"TODO AGGIORNATO\",\n    \"position\": 8,\n    \"list\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/todos/2",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"todos",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Tipologia",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxOCIsImp0aSI6IjgzMDljYTA3NDQ5ZmViM2I0NmE2NThlYzA3NGE2M2MyMDgzNDFkYTBiNWU4Mjc5ZDNiZjBiZGIxMDJkNDRlMzJjNTgyNDYxOTcwOTMwYzg3IiwiaWF0IjoxNjgwNzcyNDU1LjIyOTU5NywibmJmIjoxNjgwNzcyNDU1LjIyOTYsImV4cCI6MTcxMjM5NDg1NS4xOTc3NjYsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.t9TSZubrsm98SouVlKvkgRyblYyVqngYQxhBAg7pX7iVEiW9GEzkmI-BvaTot1v4N4_PF8HUHOBG-A3pYgwdwKCkLts5yT3SUWJu4VcZFPj34HvWyMHSsKIkq3Z9seqHoUlDEM0Suz9eNid8eINF-m2WxjHEfPp7yMNWbHcs0cLFplP1octPHnLN9J5AaCqzRDnomwgVXY-X0piHnyjek8AI40BAWP_98M8oiO0n0zcDgA-9Rm2-V0KGJGWYuZKm2J6hqItbSsxqb7GkAFfDjh1Ul6oa8PDVQRYDDDD3bAnC-xln9D2LWghd2wytDI2nAnaqqAFIQ3JRN3-iJ-3NbSTuds2dZokT8Xsr5tUHwHBZvF104yU_n4SZ0X9NDc1M0Xb808KG8_5xqJE3FcQMSgmo0Dw0l7RwJ4SjLGks4WE0Nn74hy7ueam9CBy3e3cEJdIJ66JydkVxzz7IPykJZR01o7LHECheG4moDsN9WAAnx5Ph5Wzt3lUgTYEMUDExgzXsHs6bs7FPLJIadLhI2qj_Oy-SigFHubenc-c51yRzRvcxIVGfXfcF6AE7ZNcQ5PPm8hDqNdopGdjA7xMbgFBZA2t7B83ZU86-BpQKUc11oOLhjvOIdThI2ENHOYDxJ-m8JyhIBTOjaBYp6j8JhUyLfUfyZ8ePYoBmL_CM8ig",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\": \"TODO AGGIORNATO\",\n    \"position\": 8,\n    \"list\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/api/todos/2",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"todos",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
