@@ -36,3 +36,7 @@ Genera chiave dell'applicazione
 
 Genera client per l'autenticazione.
 `php artisan passport:install`
+
+## Test API
+
+Per il test delle API è possibile utilizzare il file Kromin.json importandolo su Postman
